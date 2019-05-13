@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product 
+	   Id="4f87d4e4-d7ee-4f52-b4dd-3fe8109cef9f" 
+	   Name="TestInstaller" 
+	   Codepage="0"
+	   Language="!(loc.LanguageID)" 
+	   Version="1.0.0.0" 
+	   Manufacturer="TestInstaller" 
+	   UpgradeCode="6f66c947-b3b7-48e7-9253-47a99db172af">
+	   
+		<Package InstallerVersion="200" Compressed="yes" />
+
+		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+		
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+            <Directory Id="INSTALLLOCATION" Name="TestInstaller" />
+			</Directory>
+		</Directory>
+		
+		<DirectoryRef Id="INSTALLLOCATION">     
+         <Component
+            Id="CMP_InstallMeTXT"
+            Guid="3D3DE5C1-7154-4c61-9816-248A85F6DEBF">
+
+            <File
+               Id="InstallMe.txt"
+               Name="InstallMe.txt"
+               KeyPath="yes"
+               Source="InstallMe.txt" />
+         </Component>
+      </DirectoryRef>
+	  
+	  <Feature Id="ProductFeature" Title="Main Feature" Level="1" Description="The main portion of the product">
+		<ComponentRef Id="CMP_InstallMeTXT" />
+	  </Feature>
+
+      <UIRef Id="WixUI_Minimal" />
+   </Product>
+</Wix>

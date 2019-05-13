@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+    elementFormDefault="qualified"
+    targetNamespace="http://www.mydomain.com/AwesomeSchema"
+    xmlns="http://www.mydomain.com/AwesomeSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xse="http://schemas.microsoft.com/wix/2005/XmlSchemaExtension"
+>
+
+  <xs:annotation>
+    <xs:documentation>
+      The schema for the Awesome WiX Extension
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="SuperElement">
+    <xs:annotation>
+      <xs:appinfo>
+        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="Product" />
+        <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="Fragment" />
+      </xs:appinfo>
+      <xs:documentation>
+        A custom element for declaring level of awesomeness.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType>
+      <xs:attribute name="Id"
+                    use="required"
+                    type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The ID for the element.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+
+      <xs:attribute name="Type" use="required">
+        <xs:annotation>
+          <xs:documentation>The type of awesomeness: Super, TotallySuper or RockStar.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Super" />
+            <xs:enumeration value="TotallySuper" />
+            <xs:enumeration value="RockStar" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

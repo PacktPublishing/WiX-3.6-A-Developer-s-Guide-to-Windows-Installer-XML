@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <Binary Id="CA_DLL" SourceFile="MyCustomAction.CA.dll" />
+    <CustomAction Id="CA_ShowTime" BinaryKey="CA_DLL" DllEntry="ShowTime" Execute="deferred" Return="check" />
+
+    <InstallExecuteSequence>
+      <Custom Action="CA_ShowTime" After="InstallInitialize">
+        NOT Installed
+      </Custom>
+    </InstallExecuteSequence>
+
+    <UI>
+      <UIText Id="TimeRemaining">
+        <![CDATA[Time remaining: {[1] minutes }{[2] seconds}]]>
+      </UIText>
+
+      <Dialog Id="ProgressDlg" Width="370" Height="270" Title="TimeRemainingExample" Modeless="yes">
+
+        <Control
+					Id="CancelButton"
+					Type="PushButton"
+					TabSkip="no"
+					Text="Cancel"
+					Height="17"
+					Width="56"
+					X="180"
+					Y="243"
+					Cancel="yes">
+
+          <Publish Event="EndDialog" Value="Exit" />
+        </Control>
+
+        <Control Id="TimeRemaining" Type="Text" X="70" Y="130" Width="200" Height="17">
+          <Subscribe Event="TimeRemaining" Attribute="TimeRemaining" />
+        </Control>
+
+        <Control
+					Id="MyProgressBar"
+					Type="ProgressBar"
+					X="50"
+					Y="150"
+					Width="250"
+					Height="20"
+					ProgressBlocks="yes">
+
+          <Subscribe Event="SetProgress" Attribute="Progress" />
+        </Control>
+      </Dialog>
+
+      <InstallUISequence>
+        <Show Dialog="ProgressDlg" After="IntroDlg" />
+      </InstallUISequence>
+    </UI>
+	</Fragment>
+</Wix>

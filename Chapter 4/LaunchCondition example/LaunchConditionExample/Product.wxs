@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="LaunchConditionExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="581a77d7-82d8-4b1a-857c-bd0ba6d201ab">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="LaunchConditionExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <!--Launch conditions-->
+    <Condition Message="You must install Microsoft .NET 4.5">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+
+    <PropertyRef Id="POWERSHELLVERSION" />
+    <Condition Message="You must have PowerShell 1.0 or higher.">
+      <![CDATA[Installed OR POWERSHELLVERSION >= "1.0"]]>
+    </Condition>
+
+    <Condition Message="OS must be Windows Vista, Server 2008, or higher.">
+      <![CDATA[Installed OR VersionNT >= 600]]>
+    </Condition>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="LaunchConditionExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+	
+		</ComponentGroup>
+	</Fragment>
+</Wix>

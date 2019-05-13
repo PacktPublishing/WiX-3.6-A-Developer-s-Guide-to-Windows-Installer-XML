@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+	<Bundle Name="AwesomeBootstrapper" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="44d1b487-aba5-40f1-b2af-863b19d4c637">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense">
+      <bal:WixStandardBootstrapperApplication LogoFile="CustomLogo.png" LicenseFile="CustomEula.rtf" />
+    </BootstrapperApplicationRef>
+
+		<Chain>
+      <MsiPackage SourceFile="Awesome1.msi" />
+      <MsiPackage SourceFile="Awesome2.msi" />
+		</Chain>
+	</Bundle>
+</Wix>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="BillboardExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="5bcd8164-b58d-447e-9d16-50aaa45a0001">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="BillboardExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <Binary Id="MyCustomActionsDLL" SourceFile="MyCustomActions.CA.dll" />
+    
+    <CustomAction Id="CustomAction1" BinaryKey="MyCustomActionsDLL" DllEntry="CustomAction1" Execute="deferred" Return="check" />
+    <CustomAction Id="CustomAction2" BinaryKey="MyCustomActionsDLL" DllEntry="CustomAction2" Execute="deferred" Return="check" />
+    <CustomAction Id="CustomAction3" BinaryKey="MyCustomActionsDLL" DllEntry="CustomAction3" Execute="deferred" Return="check" />
+    
+    <InstallExecuteSequence>
+      <Custom Action="CustomAction1" After="InstallInitialize">NOT Installed</Custom>
+      <Custom Action="CustomAction2" After="CustomAction1">NOT Installed</Custom>
+      <Custom Action="CustomAction3" After="CustomAction2">NOT Installed</Custom>
+    </InstallExecuteSequence>
+
+    <UIRef Id="Custom_UI"/>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="BillboardExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="CMP_InstallMeTXT" Guid="{64086485-4E05-47BE-B8DE-696B4D4F2280}">
+        <File Id="FILE_InstallMeTXT" Source="InstallMe.txt" KeyPath="yes" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

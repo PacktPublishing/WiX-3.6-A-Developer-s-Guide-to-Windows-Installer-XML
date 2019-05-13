@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="SetDirectoryCAExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="9318cefe-673f-4ccb-8e11-dd068b77ef9e">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="SetDirectoryCAExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <CustomAction Id="ChangeInstallDirectory" Directory="INSTALLFOLDER" Value="[CommonAppDataFolder]SetDirectoryCAExample" />
+
+    <InstallExecuteSequence>
+      <Custom Action="ChangeInstallDirectory" Before="InstallFiles" />
+    </InstallExecuteSequence>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SetDirectoryCAExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="CMP_InstallMeTXT" Guid="{2BB6177F-A7C8-4810-9785-32BAAC1613A8}">
+        <File Id="FILE_InstallMeTXT" Source="InstallMe.txt" KeyPath="yes" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

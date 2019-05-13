@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <Binary Id="SuperElementActionsDLL" 
+            SourceFile="SuperElementActions.CA.dll" />
+
+    <CustomAction Id="ShowMessageImmediate" 
+                  BinaryKey="SuperElementActionsDLL" 
+                  DllEntry="ShowMessageImmediate" 
+                  Execute="immediate" 
+                  Return="check" />
+
+    <CustomAction Id="ShowMessageDeferred" 
+                  BinaryKey="SuperElementActionsDLL" 
+                  DllEntry="ShowMessageDeferred" 
+                  Execute="deferred" 
+                  Return="check" />
+
+    <InstallExecuteSequence>
+      <Custom Action="ShowMessageImmediate" Before="ShowMessageDeferred">NOT Installed</Custom>
+      <Custom Action="ShowMessageDeferred" After="InstallInitialize">NOT Installed</Custom>
+    </InstallExecuteSequence>
+	</Fragment>
+</Wix>

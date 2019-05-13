@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="SetPropertyCAExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="6b3cffc9-6c4a-4620-ba30-6137d05f4abe">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="SetPropertyCAExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <!--Original value for property-->
+    <Property Id="MY_PROPERTY" Value="123" />
+
+    <!--New value set by custom action-->
+    <SetProperty Id="MY_PROPERTY" Value="456" After="LaunchConditions" Sequence="ui" />
+    
+    <!--Just a custom action to display the property's value-->
+    <CustomAction Id="ShowPropertyValue" Script="vbscript" Execute="immediate">
+      <![CDATA[msgbox "Property is being changed to " & Session.Property("MY_PROPERTY")]]>
+    </CustomAction>
+
+    <InstallUISequence>
+      <Custom Action="ShowPropertyValue" After="SetMY_PROPERTY" />
+    </InstallUISequence>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SetPropertyCAExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>

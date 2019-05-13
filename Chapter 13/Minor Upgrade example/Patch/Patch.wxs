@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Patch
+        AllowRemoval="yes"
+        Classification="Update"
+        Comments="Patch for Awesome Software v. 1.0.0.0"
+        Description="Updates Awesome Software to v. 1.0.1.0"
+        DisplayName="Awesome Software Patch 2010-05-01"
+        Manufacturer="Acme Products"
+        MoreInfoURL="http://www.mysite.com/patchinfo.html"
+        TargetProductName="Awesome Software">
+
+        <Media Id="1000" Cabinet="MyPatch.cab">
+            <PatchBaseline Id="MyPatch" />
+        </Media>
+
+        <PatchFamily 
+            Id="MyPatchFamily" 
+            Version="1.0.1.0" 
+            ProductCode="3E786878-358D-43AD-82D1-1435ADF9F6EA"            
+            Supersede="yes">
+
+            <ComponentRef Id="CMP_InstallMeTXT" />
+        </PatchFamily>
+    </Patch>
+</Wix>

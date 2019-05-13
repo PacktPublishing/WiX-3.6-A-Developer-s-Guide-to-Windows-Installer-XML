@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="DirectorySearchExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="1499ac24-4e2a-49cd-93c7-1c56b1872978">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="DirectorySearchExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <Property Id="NPP_PATH">
+      <DirectorySearch Path="[ProgramFilesFolder]"
+                       Depth="0"
+                       AssignToProperty="no"
+                       Id="ProgramFilesFolderSearch">
+        <DirectorySearch Path="Notepad++"
+                       Depth="0"
+                       AssignToProperty="yes"
+                       Id="NppFolderSearch"/>
+      </DirectorySearch>
+    </Property>
+
+    <Condition Message="Notepad++ is not installed. Setup will now exit.">
+      <![CDATA[NPP_PATH]]>
+    </Condition>
+
+    <Condition Message="Notepad++ is installed at [NPP_PATH]. Setup will now exit.">
+      <![CDATA[NOT NPP_PATH]]>
+    </Condition>
+  </Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="DirectorySearchExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			
+		</ComponentGroup>
+	</Fragment>
+</Wix>

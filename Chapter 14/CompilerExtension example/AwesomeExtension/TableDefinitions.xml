@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tableDefinitions
+   xmlns="http://schemas.microsoft.com/wix/2006/tables">
+
+  <tableDefinition
+     name="SuperElementTable"
+     createSymbols="yes">
+
+    <columnDefinition
+         name="Id"
+         type="string"
+         length="72"
+         primaryKey="yes"
+         category="identifier"
+         description="Primary key for this element" />
+
+    <columnDefinition
+       name="Type"
+       length="72"
+       type="string"
+       category="formatted"
+       nullable="no"
+       description="Type of SuperElement" />
+
+  </tableDefinition>
+
+</tableDefinitions>

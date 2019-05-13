@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <Binary Id="Billboard0" SourceFile="Billboards\Billboard0.jpg" />
+    <Binary Id="Billboard1" SourceFile="Billboards\Billboard1.jpg" />
+    <Binary Id="Billboard2" SourceFile="Billboards\Billboard2.jpg" />
+    <Binary Id="Billboard3" SourceFile="Billboards\Billboard3.jpg" />
+
+    <UI>
+      <!--Scheduling Billboards-->
+      <BillboardAction Id="CustomAction1">
+        <Billboard Id="BB1" Feature="ProductFeature">
+          <Control Id="FindRelatedProductsBillboard" Type="Bitmap" X="0" Y="0" Height="270" Width="370" Text="Billboard1" />
+        </Billboard>
+      </BillboardAction>
+
+      <BillboardAction Id="CustomAction2">
+        <Billboard Id="BB2" Feature="ProductFeature">
+          <Control Id="InstallFilesBillboard" Type="Bitmap" X="0" Y="0" Height="270" Width="370" Text="Billboard2" />
+        </Billboard>
+      </BillboardAction>
+
+      <BillboardAction Id="CustomAction3">
+        <Billboard Id="BB3" Feature="ProductFeature">
+          <Control Id="PublishFeaturesBillboard" Type="Bitmap" X="0" Y="0" Height="270" Width="370" Text="Billboard3" />
+        </Billboard>
+      </BillboardAction>
+      
+      <!--Other dialog elements-->
+      <Dialog Id="BillboardDlg"
+              Width="370"
+              Height="270"
+              Title="BillboardExample - Billboards"
+              NoMinimize="no"
+              Modeless="yes">
+
+        <Control Id="CancelButton" Type="PushButton" Text="Cancel" Height="17" Width="56" X="180" Y="243" Cancel="yes">
+          <Publish Event="EndDialog" Value="Exit" />
+        </Control>
+
+        <!--Show this JPEG while the Execute sequence is loading-->
+        <Control Id="IntroBillboard" Type="Bitmap" X="0" Y="0" Height="270" Width="370" Text="Billboard0" />
+
+        <!--Billboard control-->
+        <Control Id="MyBillboard" Type="Billboard" X="0" Y="0" Height="270" Width="370">
+          <Subscribe Event="SetProgress" Attribute="Progress"/>
+        </Control>
+
+      </Dialog>
+
+      <InstallUISequence>
+        <Show Dialog="BillboardDlg" After="IntroDlg" />
+      </InstallUISequence>
+    </UI>
+
+  </Fragment>
+</Wix>

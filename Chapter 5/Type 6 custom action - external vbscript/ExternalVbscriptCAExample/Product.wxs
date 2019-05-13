@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="ExternalVbscriptCAExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="8bfc6627-42c4-4a82-9bbb-c95ce1a11211">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="ExternalVbscriptCAExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <!--This property will be read by the custom action-->
+    <Property Id="MY_PROPERTY" Value="1" />
+
+    <!--Custom action-->
+    <Binary Id="MyCustomActionVBS" SourceFile="MyCustomAction.vbs" />
+    <CustomAction Id="MyCustomAction_CA" BinaryKey="MyCustomActionVBS" VBScriptCall="myFunction" Execute="immediate" Return="check" />
+    
+    <InstallUISequence>
+      <Custom Action="MyCustomAction_CA" After="LaunchConditions" />
+    </InstallUISequence>
+
+  </Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="ExternalVbscriptCAExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>

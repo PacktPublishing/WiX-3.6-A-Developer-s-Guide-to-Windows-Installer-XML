@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "OriginalInstaller", "OriginalInstaller\OriginalInstaller.wixproj", "{AD60D9B4-9695-4D1F-BC42-8C7D115E8F95}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "UpgradeInstaller", "UpgradeInstaller\UpgradeInstaller.wixproj", "{E326069D-C324-4D93-8915-CA103478018B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD60D9B4-9695-4D1F-BC42-8C7D115E8F95}.Debug|x86.ActiveCfg = Debug|x86
+		{AD60D9B4-9695-4D1F-BC42-8C7D115E8F95}.Debug|x86.Build.0 = Debug|x86
+		{AD60D9B4-9695-4D1F-BC42-8C7D115E8F95}.Release|x86.ActiveCfg = Release|x86
+		{AD60D9B4-9695-4D1F-BC42-8C7D115E8F95}.Release|x86.Build.0 = Release|x86
+		{E326069D-C324-4D93-8915-CA103478018B}.Debug|x86.ActiveCfg = Debug|x86
+		{E326069D-C324-4D93-8915-CA103478018B}.Debug|x86.Build.0 = Debug|x86
+		{E326069D-C324-4D93-8915-CA103478018B}.Release|x86.ActiveCfg = Release|x86
+		{E326069D-C324-4D93-8915-CA103478018B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

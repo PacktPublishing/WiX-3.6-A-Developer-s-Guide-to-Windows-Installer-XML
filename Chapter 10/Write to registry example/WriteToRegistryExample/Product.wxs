@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="WriteToRegistryExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="1953caea-abfb-4141-a868-dc61dc8e7058">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="WriteToRegistryExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="WriteToRegistryExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="CMP_InstallMeTXT" Guid="{1E622827-05F9-423C-9276-B05CCE7B1351}">
+        <File Id="FILE_InstallMeTXT" Source="InstallMe.txt" KeyPath="yes" />
+      </Component>
+      
+      <!--Writes to Registry-->
+      <Component Id="CMP_WriteToRegistry" Guid="9AB04D89-19B5-4729-9CD5-656C8C6B833F">
+        <RegistryValue Id="myRegistryValue" KeyPath="yes" Action="write" Root="HKLM" Key="Software\WixTest\Test" Name="myValue" Value="my value" Type="string" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

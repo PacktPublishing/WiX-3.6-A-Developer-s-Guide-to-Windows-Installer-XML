@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="EmptyFolderExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="b9f6f617-7d4c-4b9a-a165-24bd869ce1e9">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="EmptyFolderExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="EmptyFolderExample">
+          <Directory Id="EmptyFolderDir" Name="EmptyFolder" />
+        </Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="EmptyFolderDir">
+      <Component Id="CMP_MyEmptyDir"
+             Guid="85DAD4AE-6404-4A40-B713-43538091B9D3"
+             KeyPath="yes">
+        <CreateFolder />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

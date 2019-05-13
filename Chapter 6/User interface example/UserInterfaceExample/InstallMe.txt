@@ -1,0 +1,1 @@
+﻿This was installed by the WiX installer.

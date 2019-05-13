@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <Binary Id="MyCustomActionDLL" SourceFile="MyCustomAction.CA.dll" />
+    <CustomAction Id="DoStuff" BinaryKey="MyCustomActionDLL" DllEntry="DoStuff" Execute="deferred" Return="check" />
+    <InstallExecuteSequence>
+      <Custom Action="DoStuff" After="InstallInitialize">NOT Installed</Custom>
+    </InstallExecuteSequence>
+
+    <UI>
+      <ProgressText Action="DoStuff" Template="My Custom Action: [1]" />
+
+      <Dialog Id="ProgressDlg" Width="370" Height="270" Title="ProgressBarExample - Progress" Modeless="yes">
+
+        <Control
+          Id="CancelButton"
+          Type="PushButton"
+          TabSkip="no"
+          Text="Cancel"
+          Height="17"
+          Width="56"
+          X="180"
+          Y="243"
+          Cancel="yes">
+
+          <Publish Event="EndDialog" Value="Exit" />
+        </Control>
+
+        <Control Id="LoadingText" Type="Text" X="70" Y="130" Width="200" Height="17" Text="Script is loading">
+          <Subscribe Event="ScriptInProgress" Attribute="Visible" />
+        </Control>
+
+        <Control Id="InfoText" Type="Text" X="50" Y="100" Width="250" Height="32" NoWrap="no">
+          <Subscribe Event="ActionData" Attribute="Text" />
+        </Control>
+
+        <Control
+          Id="MyProgressBar"
+          Type="ProgressBar"
+          X="50"
+          Y="150"
+          Width="250"
+          Height="20"
+          ProgressBlocks="yes">
+
+          <Subscribe Event="SetProgress" Attribute="Progress" />
+        </Control>
+      </Dialog>
+
+      <InstallUISequence>
+        <Show Dialog="ProgressDlg" After="IntroDlg" />
+      </InstallUISequence>
+    </UI>
+  </Fragment>
+</Wix>

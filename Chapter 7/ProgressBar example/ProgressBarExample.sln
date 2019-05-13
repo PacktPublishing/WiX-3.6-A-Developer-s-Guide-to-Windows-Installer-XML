@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "ProgressBarExample", "ProgressBarExample\ProgressBarExample.wixproj", "{B2D37773-E4CB-4183-8A63-AC03AD382231}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E0D73DE4-B304-4448-82FD-EC53F3FE54D7} = {E0D73DE4-B304-4448-82FD-EC53F3FE54D7}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCustomAction", "MyCustomAction\MyCustomAction.csproj", "{E0D73DE4-B304-4448-82FD-EC53F3FE54D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2D37773-E4CB-4183-8A63-AC03AD382231}.Debug|x86.ActiveCfg = Debug|x86
+		{B2D37773-E4CB-4183-8A63-AC03AD382231}.Debug|x86.Build.0 = Debug|x86
+		{B2D37773-E4CB-4183-8A63-AC03AD382231}.Release|x86.ActiveCfg = Release|x86
+		{B2D37773-E4CB-4183-8A63-AC03AD382231}.Release|x86.Build.0 = Release|x86
+		{E0D73DE4-B304-4448-82FD-EC53F3FE54D7}.Debug|x86.ActiveCfg = Debug|x86
+		{E0D73DE4-B304-4448-82FD-EC53F3FE54D7}.Debug|x86.Build.0 = Debug|x86
+		{E0D73DE4-B304-4448-82FD-EC53F3FE54D7}.Release|x86.ActiveCfg = Release|x86
+		{E0D73DE4-B304-4448-82FD-EC53F3FE54D7}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

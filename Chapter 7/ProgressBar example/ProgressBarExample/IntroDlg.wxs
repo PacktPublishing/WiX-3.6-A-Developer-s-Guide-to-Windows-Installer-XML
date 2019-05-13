@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI Id="Custom_UI">
+      <DialogRef Id="ProgressDlg"/>
+
+      <TextStyle Id="Tahoma_Regular" FaceName="Tahoma" Size="8" />
+      <Property Id="DefaultUIFont" Value="Tahoma_Regular" />
+
+      <Dialog
+        Id="IntroDlg"
+        Width="370"
+        Height="270"
+        Title="ProgressBarExample - Intro"
+        NoMinimize="no">
+
+        <Control
+            Id="InstallButton"
+            Type="PushButton"
+            Text="Install"
+            Height="17"
+            Width="56"
+            X="245"
+            Y="243" TabSkip="yes">
+
+          <Publish Event="EndDialog" Value="Return" />
+        </Control>
+
+        <Control
+          Id="CancelButton"
+          Type="PushButton"
+          Text="Cancel"
+          Height="17"
+          Width="56"
+          X="180"
+          Y="243"
+          Cancel="yes">
+
+          <Publish Event="EndDialog" Value="Exit" />
+        </Control>
+
+      </Dialog>
+    </UI>
+
+    <InstallUISequence>
+      <Show Dialog="IntroDlg" Before="ExecuteAction" />
+    </InstallUISequence>
+  </Fragment>
+</Wix>

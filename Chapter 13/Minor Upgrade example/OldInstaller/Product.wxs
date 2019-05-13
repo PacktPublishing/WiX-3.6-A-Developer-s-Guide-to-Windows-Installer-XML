@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+   <Product
+        Id="3E786878-358D-43AD-82D1-1435ADF9F6EA"
+        Name="Awesome Software"
+        Language="1033"
+        Version="1.0.0.0"
+        Manufacturer="Awesome Company"
+        UpgradeCode="B414C827-8D81-4B4A-B3B6-338C06DE3A11">
+
+      <Package InstallerVersion="301" Compressed="yes" />
+      <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+      <Property Id="ALLUSERS" Value="1" />
+
+      <!--Directory structure-->
+      <Directory Id="TARGETDIR" Name="SourceDir">
+         <Directory Id="ProgramFilesFolder">
+            <Directory Id="INSTALLLOCATION"
+                 Name="Awesome Software" />
+         </Directory>
+      </Directory>
+
+      <!--Components-->
+      <DirectoryRef Id="INSTALLLOCATION">
+         <Component
+              Id="CMP_InstallMeTXT"
+              Guid="E8A58B7B-F031-4548-9BDD-7A6796C8460D">
+            <File
+                 Id="FILE_InstallMeTXT"
+                 Source="InstallMe.txt" KeyPath="yes" />
+         </Component>
+      </DirectoryRef>
+
+      <!--Features-->
+      <Feature Id="ProductFeature" Title="Main Product"
+          Level="1">
+         <ComponentRef Id="CMP_InstallMeTXT" />
+      </Feature>
+
+   </Product>
+</Wix>

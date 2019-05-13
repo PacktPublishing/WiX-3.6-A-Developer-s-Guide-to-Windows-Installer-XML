@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="WindowsServiceExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="26fcca58-6d58-4d8f-bc65-5bf4e89fd111">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="WindowsServiceExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="WindowsServiceExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="CMP_InstallMeTXT" Guid="{A0227488-2753-4937-8258-8AF99819CA70}">
+        <File Id="FILE_InstallMeTXT" Source="InstallMe.txt" KeyPath="yes" />
+      </Component>
+
+      <Component Id="CMP_MyWindowsService" Guid="3D3DE5C1-7154-4c61-9816-248A85F6DEBF">
+        <File Id="MyWindowsService.exe" KeyPath="yes" Source="MyWindowsService.exe" />
+
+        <ServiceInstall
+              Id="InstallWindowsService"
+              Name="testsvc"
+              DisplayName="Test Service"
+              Description="Test service for WiX"
+              Start="auto"
+              ErrorControl="normal"
+              Type="ownProcess" />
+
+        <ServiceControl
+              Id="sc_WindowsService"
+              Name="testsvc"
+              Start="install"
+              Stop="both"
+              Remove="uninstall"
+              Wait="yes" />
+      </Component>
+
+    </ComponentGroup>
+	</Fragment>
+</Wix>

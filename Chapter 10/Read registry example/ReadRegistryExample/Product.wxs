@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="ReadRegistryExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="24ab6580-65ce-4c48-8d98-650f9afc0cc1">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="ReadRegistryExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <!--Reads the Registry. You must have a value called "MyValue" in "HKCU\Software\MyCompany"-->
+    <Property Id="REGISTRY_RESULT">
+      <RegistrySearch Id="MyRegistrySearch" Root="HKCU" Key="Software\MyCompany" Name="MyValue" Type="raw" />
+    </Property>
+
+    <!--Test if we got the value-->
+    <CustomAction Id="CheckValue" Script="vbscript" Execute="immediate" Return="check">
+      <![CDATA[
+                    If Session.Property("REGISTRY_RESULT") = "" Then
+                         msgbox "There was no value found in the Registry at the location searched: HKCU\Software\MyCompany"
+                    Else
+                         msgbox "Found the value in the Registry. Its value is: " & Session.Property("REGISTRY_RESULT")
+                    End If
+               ]]>
+    </CustomAction>
+
+    <!--Schedule the custom action-->
+    <InstallUISequence>
+      <Custom Action="CheckValue" After="AppSearch">NOT Installed</Custom>
+    </InstallUISequence>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="ReadRegistryExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="CMP_InstallMeTXT" Guid="{ABE97AAD-FBA4-45AB-9500-F1DD78FFBC46}">
+        <File Id="FILE_InstallMeTXT" Source="InstallMe.txt" KeyPath="yes" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

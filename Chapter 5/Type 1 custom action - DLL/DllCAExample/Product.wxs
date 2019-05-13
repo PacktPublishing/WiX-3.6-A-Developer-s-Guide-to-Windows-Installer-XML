@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="DllCAExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="46475a35-2087-4d4a-93e8-6076094f9591">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="DllCAExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <Property Id="MY_PROPERTY" Value="123" />
+
+    <Binary Id="MyCustomActionDLL" SourceFile="MyCustomAction.CA.dll" />
+    <CustomAction Id="CA_ShowMessage" BinaryKey="MyCustomActionDLL" DllEntry="ShowMessage" Execute="immediate" Return="check" />
+
+    <InstallUISequence>
+      <Custom Action="CA_ShowMessage" After="LaunchConditions" />
+    </InstallUISequence>
+  </Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="DllCAExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>

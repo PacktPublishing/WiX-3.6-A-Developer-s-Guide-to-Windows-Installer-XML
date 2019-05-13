@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="EmbeddedVbscriptCAExample" Language="1033" Version="1.0.0.0" Manufacturer="WixExamples" UpgradeCode="a4af10a9-6748-4e2e-b9e1-15d331f1e8d7">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="EmbeddedVbscriptCAExample" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <CustomAction Id="ShowMessage" Script="vbscript" Execute="immediate">
+      <![CDATA[msgbox "This is from embedded VBScript!"]]>
+    </CustomAction>
+
+    <InstallUISequence>
+      <Custom Action="ShowMessage" After="LaunchConditions" />
+    </InstallUISequence>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="EmbeddedVbscriptCAExample" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			
+		</ComponentGroup>
+	</Fragment>
+</Wix>

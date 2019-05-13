@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product 
+		Id="*" 
+		Name="PracticeWix" 
+		Language="1033" 
+		Version="1.0.0.0" 
+		Manufacturer="Myself" 
+		UpgradeCode="B9B82C37-34EC-4F50-9D0E-0DF8F06F1F64">
+		
+		<Package Compressed="yes" />
+		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+		
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLLOCATION" 
+					Name="PracticeWix" />
+			</Directory>
+		</Directory>
+		
+		<DirectoryRef Id="INSTALLLOCATION">
+			<Component Id="cmp_InstallMeTXT" 
+				Guid="825F0C9A-AACC-4E37-B8A2-30A452EB58F9">
+				<File Id="InstallMe.txt" Source="InstallMe.txt" 
+					KeyPath="yes" />
+			</Component>
+		</DirectoryRef>
+
+		<Feature Id="PracticeWix" Title="PracticeWix" Level="1">
+			<ComponentRef Id="cmp_InstallMeTXT" />
+		</Feature>
+		
+		<UIRef Id="WixUI_Minimal" />
+	</Product>
+</Wix>
