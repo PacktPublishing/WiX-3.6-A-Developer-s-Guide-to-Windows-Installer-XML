@@ -1,3 +1,8 @@
+## $5 Tech Unlocked 2021!
+[Buy and download this product for only $5 on PacktPub.com](https://www.packtpub.com/)
+-----
+*The $5 campaign         runs from __December 15th 2020__ to __January 13th 2021.__*
+
 # WiX 3.6: A Developer's Guide to Windows Installer XML
 
 <a href="https://prod.packtpub.com/in/application-development/wix-36-developers-guide-windows-installer-xml">  <img src="https://prod.packtpub.com/media/catalog/product/cache/ecd051e9670bd57df35c8f0b122d8aea/0/4/0427os_mockupcover_normal.jpg" alt="WiX 3.6: A Developer's Guide to Windows Installer XML" height="256px" align="right"></a>
