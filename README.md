@@ -1,3 +1,15 @@
+
+### Get this product for $5
+
+<i>Packt is having its biggest sale of the year. Get this eBook or any other book, video, or course that you like just for $5 each</i>
+
+
+<b><p align='center'>[Buy now](https://packt.link/9781782160427)</p></b>
+
+
+<b><p align='center'>[Buy similar titles for just $5](https://subscription.packtpub.com/search)</p></b>
+
+
 # WiX 3.6: A Developer's Guide to Windows Installer XML
 
 <a href="https://prod.packtpub.com/in/application-development/wix-36-developers-guide-windows-installer-xml">  <img src="https://prod.packtpub.com/media/catalog/product/cache/ecd051e9670bd57df35c8f0b122d8aea/0/4/0427os_mockupcover_normal.jpg" alt="WiX 3.6: A Developer's Guide to Windows Installer XML" height="256px" align="right"></a>
